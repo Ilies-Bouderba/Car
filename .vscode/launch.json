@@ -8,13 +8,14 @@
             "type": "java",
             "name": "Current File",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "${file}",
+            "vmArgs": "--module-path C:/Users/boude/Downloads/javafx-sdk-23.0.2/lib --add-modules javafx.controls,javafx.fxml",
+
         },
         {
             "type": "java",
             "name": "Connect",
             "request": "launch",
-            
             "vmArgs": "--module-path C:/Users/boude/Downloads/javafx-sdk-23.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "Connect",
             "projectName": "Car_3abc4618"
@@ -33,6 +34,14 @@
             "request": "launch",
             "vmArgs": "--module-path C:/Users/boude/Downloads/javafx-sdk-23.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "SignUp",
+            "projectName": "Car_3abc4618"
+        },
+        {
+            "type": "java",
+            "name": "Index",
+            "request": "launch",
+            "vmArgs": "--module-path C:/Users/boude/Downloads/javafx-sdk-23.0.2/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "Index",
             "projectName": "Car_3abc4618"
         }
     ]

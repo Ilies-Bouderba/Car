@@ -1,8 +1,6 @@
 import Components.*;
 import Layouts.*;
 import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import App.Controllers.SignUpController;
 import App.Utils.StageUtil;
@@ -12,6 +10,7 @@ public class SignUp extends Application {
     @Override
     public void start(Stage primaryStage) {
         PageLayout root = new PageLayout();
+        primaryStage.setMaximized(true);
 
         Card loginCard = new Card("Car Rental Sign Up");
 
@@ -20,12 +19,7 @@ public class SignUp extends Application {
         InputField PhoneField = new InputField("Phone Number", "Enter your Phone Number");
         InputField passwordField = new InputField("Password", "Enter your password");
         ValidationLabel errorLabel = new ValidationLabel();
-
-        HBox optionsRow = new HBox();
-
-        optionsRow.setAlignment(Pos.CENTER_LEFT);
-        optionsRow.getChildren().addAll(new BoxCheck(), new Spacer(), new AuthLink("Forgot password?"));
-
+        
         PrimaryButton signUpButton = new PrimaryButton("Sign Up");
         signUpButton.setOnAction(_ -> {
                     errorLabel.clearError();
@@ -39,15 +33,19 @@ public class SignUp extends Application {
                     );
 
                     if (success == null) {
-                        System.out.println("Registration successful!");
+                        new Login().start(primaryStage);
+                        primaryStage.setMaximized(true);
                     }else {
                         errorLabel.showError(success);
                     }
                 });
         Section signupPrompt = new Section();
-        signupPrompt.getChildren().add(new AuthLink("Already Have an account? Log In"));
+        signupPrompt.getChildren().add(new AuthLink("Already Have an account? Log In", _ -> {
+            new Login().start(primaryStage);
+            javafx.application.Platform.runLater(() -> primaryStage.setMaximized(true));
+        }));
 
-        loginCard.getChildren().addAll(userName, emailField, PhoneField, passwordField, optionsRow, errorLabel,signUpButton, signupPrompt);
+        loginCard.getChildren().addAll(userName, emailField, PhoneField, passwordField, errorLabel,signUpButton, signupPrompt);
         root.getChildren().add(loginCard);
 
         StageUtil.init(primaryStage, root, "SignUp");
