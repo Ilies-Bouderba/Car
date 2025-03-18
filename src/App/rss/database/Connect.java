@@ -47,18 +47,16 @@ public class Connect {
                     stmt.execute("CREATE TABLE IF NOT EXISTS Cars (" +
                         "Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "Agent_Id INTEGER NOT NULL, " +
-                        "Maker_id INTEGER NOT NULL, " +
+                        "Maker_Id INTEGER NOT NULL, " +
                         "Model_Id INTEGER NOT NULL, " +
-                        "FOREIGN KEY (Maker_Id) REFERENCES Car_Makers(Id), " +
-                        "FOREIGN KEY (Model_Id) REFERENCES Car_Models(Id)" +
+                        "Fuel_id INTEGER NOT NULL, " +
                         "Year INTEGER NOT NULL, " +
-                        "Price REAL NOT NULL," +
-                        "Phone TEXT NOT NULL UNIQUE, " +
+                        "Price REAL NOT NULL, " +
                         "Description TEXT NOT NULL, " +
-                        "Address TEXT NOT NULL, " +
-                        "FOREIGN KEY (Agent_Id) REFERENCES Agent(Id), " +
-                        "FOREIGN KEY (Address) REFERENCES Agent(Address), " +
-                        "FOREIGN KEY (Phone) REFERENCES Agent(Phone))");
+                        "FOREIGN KEY (Maker_Id) REFERENCES Car_Makers(Id), " +
+                        "FOREIGN KEY (Model_Id) REFERENCES Car_Models(Id), " +
+                        "FOREIGN KEY (Fuel_Id) REFERENCES Fuel_Type(Id), " +
+                        "FOREIGN KEY (Agent_Id) REFERENCES Agent(Id))");
 
                     stmt.execute("CREATE TABLE IF NOT EXISTS Car_Images (" +
                         "Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -82,6 +80,10 @@ public class Connect {
                         "Rear_Parking_Sensors BOOLEAN NOT NULL, " +
                         "Leather_Seats BOOLEAN NOT NULL, " +
                         "FOREIGN KEY (Car_Id) REFERENCES Cars(Id))");
+
+                    stmt.execute("CREATE TABLE IF NOT EXISTS Fuel_Type (" +
+                        "Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "Name TEXT NOT NULL UNIQUE)");
                 }
             } catch (SQLException e) {
                 System.err.println("Error connecting to database: " + e.getMessage());

@@ -16,12 +16,12 @@ public class CarGrid extends ScrollPane {
 
         for (int i = 0; i < carData.length; i++) {
             CarCard card = new CarCard(
-                (String) carData[i][0], 
-                (String) carData[i][1], 
-                (String) carData[i][2], 
-                (String) carData[i][3], 
-                (String) carData[i][4], 
-                false
+                (String) carData[i][0], // Year
+                (String) carData[i][1], // Title
+                Integer.parseInt((String) carData[i][2]), // Price
+                (String) carData[i][3], // Fuel type
+                (String) carData[i][4],  // Image URL
+                (String) carData[i][5] // Description
             );
             gridPane.add(card, i % 4, i / 4);
         }
